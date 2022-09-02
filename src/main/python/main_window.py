@@ -55,7 +55,7 @@ class MainWindow(QMainWindow):
 
         self.btn_refresh_devices = QToolButton()
         self.btn_refresh_devices.setToolButtonStyle(Qt.ToolButtonTextOnly)
-        self.btn_refresh_devices.setText(tr("MainWindow", "Refresh"))
+        self.btn_refresh_devices.setText(tr("MainWindow", "重新查找"))
         self.btn_refresh_devices.clicked.connect(self.on_click_refresh)
 
         layout_combobox = QHBoxLayout()
@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
         self.matrix_tester = MatrixTest(self.layout_editor)
         self.rgb_configurator = RGBConfigurator()
 
-        self.editors = [(self.keymap_editor, "Keymap"), (self.layout_editor, "Layout"), (self.macro_recorder, "Macros"),
+        self.editors = [(self.keymap_editor, "配列"), (self.layout_editor, "层选择"), #(self.macro_recorder, "Macros"),
                         (self.rgb_configurator, "Lighting"), (self.tap_dance, "Tap Dance"), (self.combos, "Combos"),
                         (self.key_override, "Key Overrides"), (self.qmk_settings, "QMK Settings"),
                         (self.matrix_tester, "Matrix tester"), (self.firmware_flasher, "Firmware updater")]
