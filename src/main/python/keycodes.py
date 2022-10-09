@@ -453,14 +453,6 @@ KEYCODES_22 = [
     K(MT(MOD_LSFT | MOD_LALT), "LSA_T(kc)", "LSA_T\n(kc)", "LSFT + LALT when held, kc when tapped", masked=True),
     K(MT(MOD_LCTL | MOD_LGUI), "LCG_T(kc)", "LCG_T\n(kc)", "LCTL + LGUI when held, kc when tapped", masked=True),
     K(MT(MOD_RCTL | MOD_RGUI), "RCG_T(kc)", "RCG_T\n(kc)", "RCTL + RGUI when held, kc when tapped", masked=True),
-    K(0x5C16, "KC_GESC", "~\nEsc", "Esc normally, but ~ when Shift or GUI is pressed"),
-    K(0x5CD7, "KC_LSPO", "LS\n(", "Left Shift when held, ( when tapped"),
-    K(0x5CD8, "KC_RSPC", "RS\n)", "Right Shift when held, ) when tapped"),
-    K(0x5CF3, "KC_LCPO", "LC\n(", "Left Control when held, ( when tapped"),
-    K(0x5CF4, "KC_RCPC", "RC\n)", "Right Control when held, ) when tapped"),
-    K(0x5CF5, "KC_LAPO", "LA\n(", "Left Alt when held, ( when tapped"),
-    K(0x5CF6, "KC_RAPC", "RA\n)", "Right Alt when held, ) when tapped"),
-    K(0x5CD9, "KC_SFTENT", "RS\nEnter", "Right Shift when held, Enter when tapped"),
 ]
 
 
