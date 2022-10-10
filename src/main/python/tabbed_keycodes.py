@@ -9,7 +9,7 @@ from widgets.display_keyboard import DisplayKeyboard
 from widgets.display_keyboard_defs import ansi_100, ansi_80, ansi_70, iso_100, iso_80, iso_70
 from widgets.flowlayout import FlowLayout
 from keycodes import KEYCODES_BASIC, KEYCODES_ISO, KEYCODES_MACRO, KEYCODES_LAYERS, KEYCODES_QUANTUM, \
-    KEYCODES_BACKLIGHT, KEYCODES_MEDIA, KEYCODES_Mouse, KEYCODES_APP, KEYCODES_22, KEYCODES_SPECIAL, KEYCODES_SHIFTED, KEYCODES_USER, Keycode, \
+    KEYCODES_BACKLIGHT, KEYCODES_MEDIA, KEYCODES_Mouse, KEYCODES_APP, KEYCODES_DIAL1, KEYCODES_22, KEYCODES_SPECIAL, KEYCODES_SHIFTED, KEYCODES_USER, Keycode, \
     KEYCODES_TAP_DANCE, KEYCODES_MIDI, KEYCODES_BASIC_NUMPAD, KEYCODES_BASIC_NAV, KEYCODES_ISO_KR
 from widgets.square_button import SquareButton
 from util import tr, KeycodeDisplay
@@ -171,6 +171,7 @@ class FilteredTabbedKeycodes(QTabWidget):
                  KEYCODES_ISO_KR),
                 (None, KEYCODES_ISO),
             ], prefix_buttons=[("Any", -1)]),
+            SimpleTab(self, "DIAL", KEYCODES_DIAL1),
             SimpleTab(self, "Combine", KEYCODES_QUANTUM),
             SimpleTab(self, "Hold|Tap", KEYCODES_22),
             SimpleTab(self, "Media", KEYCODES_MEDIA),

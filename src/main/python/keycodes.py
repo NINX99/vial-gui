@@ -346,17 +346,17 @@ KEYCODES_QUANTUM = [
 ]
 
 KEYCODES_BACKLIGHT = [
-    K(23746, "RGB_TOG", "RGB\nToggle", "Toggle RGB lighting on or off"),
-    K(23747, "RGB_MOD", "RGB\nMode +", "Next RGB mode"),
-    K(23748, "RGB_RMOD", "RGB\nMode -", "Previous RGB mode"),
-    K(23749, "RGB_HUI", "Hue +", "Increase hue"),
-    K(23750, "RGB_HUD", "Hue -", "Decrease hue"),
-    K(23751, "RGB_SAI", "Sat +", "Increase saturation"),
-    K(23752, "RGB_SAD", "Sat -", "Decrease saturation"),
-    K(23753, "RGB_VAI", "Bright +", "Increase value"),
-    K(23754, "RGB_VAD", "Bright -", "Decrease value"),
-    K(23755, "RGB_SPI", "Effect +", "Increase RGB effect speed"),
-    K(23756, "RGB_SPD", "Effect -", "Decrease RGB effect speed"),
+    K(23746, "RGB_TOG", "RGB\nOn/Off", "Toggle RGB lighting on or off"),
+    K(23747, "RGB_MOD", "RGB\nMode+", "Next RGB mode"),
+    K(23748, "RGB_RMOD", "RGB\nMode-", "Previous RGB mode"),
+    K(23749, "RGB_HUI", "Hue\n+", "Increase hue"),
+    K(23750, "RGB_HUD", "Hue\n-", "Decrease hue"),
+    K(23751, "RGB_SAI", "Sat\n+", "Increase saturation"),
+    K(23752, "RGB_SAD", "Sat\n-", "Decrease saturation"),
+    K(23753, "RGB_VAI", "Bright\n+", "Increase value"),
+    K(23754, "RGB_VAD", "Bright\n-", "Decrease value"),
+    K(23755, "RGB_SPI", "Effect\n+", "Increase RGB effect speed"),
+    K(23756, "RGB_SPD", "Effect\n-", "Decrease RGB effect speed"),
 ]
 
 KEYCODES_Mouse = [
@@ -405,6 +405,17 @@ KEYCODES_APP = [
     K(184, "KC_WSTP", "Browser\nStop", "Browser Stop (Windows)", alias=["KC_WWW_STOP"]),
     K(185, "KC_WREF", "Browser\nRefresh", "Browser Refresh (Windows)", alias=["KC_WWW_REFRESH"]),
     K(186, "KC_WFAV", "Browser\nFav.", "Browser Favorites (Windows)", alias=["KC_WWW_FAVORITES"]),
+]
+
+KEYCODES_DIAL1 = [
+    K(0x00DD, "KC_DIAL_BT", "DIAL\nBTN", "DIAL_BTN", alias=["xxxxxx"]),
+    K(0x00DE, "KC_DIAL_CW", "DIAL\nCW", "DIAL_CW", alias=["xxxxxx"]),
+    K(0x00DF, "KC_DIAL_CCW", "DIAL\nCCW", "DIAL_CCW", alias=["xxxxxx"]),
+    K(172, "KC_MPRV", "Media\nPrev", "Previous Track", alias=["KC_MEDIA_PREV_TRACK"]),
+    K(171, "KC_MNXT", "Media\nNext", "Next Track", alias=["KC_MEDIA_NEXT_TRACK"]),
+    K(170, "KC_VOLD", "Vol -", "Volume Down", alias=["KC_AUDIO_VOL_DOWN"]),
+    K(169, "KC_VOLU", "Vol +", "Volume Up", alias=["KC_AUDIO_VOL_UP"]),
+
 ]
 
 KEYCODES_MEDIA = [
@@ -646,7 +657,8 @@ def recreate_keycodes():
     KEYCODES.clear()
     KEYCODES.extend(KEYCODES_SPECIAL + KEYCODES_BASIC + KEYCODES_SHIFTED + KEYCODES_ISO + KEYCODES_LAYERS +
                     KEYCODES_QUANTUM + KEYCODES_BACKLIGHT + KEYCODES_MEDIA + KEYCODES_TAP_DANCE + KEYCODES_MACRO +
-                    KEYCODES_USER + KEYCODES_HIDDEN + KEYCODES_MIDI)
+                    KEYCODES_USER + KEYCODES_HIDDEN + KEYCODES_MIDI + KEYCODES_22 + KEYCODES_APP + KEYCODES_DIAL1 +
+                    KEYCODES_Mouse)
     KEYCODES_MAP.clear()
     for keycode in KEYCODES:
         KEYCODES_MAP[keycode.code] = keycode
@@ -702,9 +714,9 @@ def recreate_keyboard_keycodes(keyboard):
 
     KEYCODES_LAYERS.clear()
 
-    if layers >= 4:
-        KEYCODES_LAYERS.append(Keycode(0x5F10, "FN_MO13", "Fn1\n(Fn3)"))
-        KEYCODES_LAYERS.append(Keycode(0x5F11, "FN_MO23", "Fn2\n(Fn3)"))
+    #if layers >= 4:
+    #    KEYCODES_LAYERS.append(Keycode(0x5F10, "FN_MO13", "Fn1\n(Fn3)"))
+    #    KEYCODES_LAYERS.append(Keycode(0x5F11, "FN_MO23", "Fn2\n(Fn3)"))
 
     KEYCODES_LAYERS.extend(
         generate_keycodes_for_mask("MO", 0x5100,
