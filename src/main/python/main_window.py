@@ -27,7 +27,7 @@ from editor.rgb_configurator import RGBConfigurator
 from tabbed_keycodes import TabbedKeycodes
 from editor.tap_dance import TapDance
 from unlocker import Unlocker
-from util import tr, EXAMPLE_KEYBOARDS, KeycodeDisplay, EXAMPLE_KEYBOARD_PREFIX
+from util import tr, EXAMPLE_KEYBOARDS, KeycodeDisplay
 from vial_device import VialKeyboard
 from editor.matrix_test import MatrixTest
 
@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
         self.matrix_tester = MatrixTest(self.layout_editor)
         self.rgb_configurator = RGBConfigurator()
 
-        self.editors = [(self.keymap_editor, "Keymap"), (self.layout_editor, "Layout"), (self.macro_recorder, "Macros"),
+        self.editors = [(self.keymap_editor, "Keymap"), (self.layout_editor, "Layout"),# (self.macro_recorder, "Macros"),
                         (self.rgb_configurator, "Lighting"), (self.tap_dance, "Tap Dance"), (self.combos, "Combos"),
                         (self.key_override, "Key Overrides"), (self.qmk_settings, "QMK Settings"),
                         (self.matrix_tester, "Matrix tester"), (self.firmware_flasher, "Firmware updater")]
@@ -279,11 +279,10 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "", "Unsupported protocol version!\n"
                                           "Please download latest Vial from https://get.vial.today/")
 
-        if isinstance(self.autorefresh.current_device, VialKeyboard):
-            keyboard_id = self.autorefresh.current_device.keyboard.keyboard_id
-            if (keyboard_id in EXAMPLE_KEYBOARDS) or ((keyboard_id & 0xFFFFFFFFFFFFFF) == EXAMPLE_KEYBOARD_PREFIX):
-                QMessageBox.warning(self, "", "An example keyboard UID was detected.\n"
-                                              "Please change your keyboard UID to be unique before you ship!")
+        if isinstance(self.autorefresh.current_device, VialKeyboard) \
+                and self.autorefresh.current_device.keyboard.keyboard_id in EXAMPLE_KEYBOARDS:
+            QMessageBox.warning(self, "", "An example keyboard UID was detected.\n"
+                                          "Please change your keyboard UID to be unique before you ship!")
 
         self.rebuild()
         self.refresh_tabs()
