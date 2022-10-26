@@ -152,10 +152,10 @@ KEYCODES_BASIC_NAV = [
     K(0x4C, "KC_DELETE", "Del", recorder_alias=["delete"], alias=["KC_DEL"]),
     K(0x4D, "KC_END", "End", recorder_alias=["end"]),
     K(0x4E, "KC_PGDOWN", "Page\nDown", recorder_alias=["page down"], alias=["KC_PGDN"]),
-    K(0x4F, "KC_RIGHT", "Right", recorder_alias=["right"], alias=["KC_RGHT"]),
-    K(0x50, "KC_LEFT", "Left", recorder_alias=["left"]),
-    K(0x51, "KC_DOWN", "Down", recorder_alias=["down"]),
-    K(0x52, "KC_UP", "Up", recorder_alias=["up"]),
+    K(0x4F, "KC_RIGHT", "→", recorder_alias=["right"], alias=["KC_RGHT"]),
+    K(0x50, "KC_LEFT", "←", recorder_alias=["left"]),
+    K(0x51, "KC_DOWN", "↓", recorder_alias=["down"]),
+    K(0x52, "KC_UP", "↑", recorder_alias=["up"]),
 ]
 
 KEYCODES_BASIC = [
@@ -229,11 +229,11 @@ KEYCODES_BASIC = [
     K(0xE0, "KC_LCTRL", "LCtrl", recorder_alias=["left ctrl", "ctrl"], alias=["KC_LCTL"]),
     K(0xE1, "KC_LSHIFT", "LShift", recorder_alias=["left shift", "shift"], alias=["KC_LSFT"]),
     K(0xE2, "KC_LALT", "LAlt", recorder_alias=["alt"], alias=["KC_LOPT"]),
-    K(0xE3, "KC_LGUI", "LGui", recorder_alias=["left windows", "windows"], alias=["KC_LCMD", "KC_LWIN"]),
+    K(0xE3, "KC_LGUI", "GUI:Win\nCommand", recorder_alias=["left windows", "windows"], alias=["KC_LCMD", "KC_LWIN"]),
     K(0xE4, "KC_RCTRL", "RCtrl", recorder_alias=["right ctrl"], alias=["KC_RCTL"]),
     K(0xE5, "KC_RSHIFT", "RShift", recorder_alias=["right shift"], alias=["KC_RSFT"]),
     K(0xE6, "KC_RALT", "RAlt", alias=["KC_ALGR", "KC_ROPT"]),
-    K(0xE7, "KC_RGUI", "RGui", recorder_alias=["right windows"], alias=["KC_RCMD", "KC_RWIN"]),
+    K(0xE7, "KC_RGUI", "GUI:Win\nCommand", recorder_alias=["right windows"], alias=["KC_RCMD", "KC_RWIN"]),
 ]
 
 KEYCODES_BASIC.extend(KEYCODES_BASIC_NUMPAD)
@@ -321,149 +321,168 @@ RESET_KEYCODE = 0x5C00
 
 KEYCODES_QUANTUM = [
 
-    K(QK_LSFT, "LSFT(kc)", "LSft\n(kc)", masked=True),
-    K(QK_LCTL, "LCTL(kc)", "LCtl\n(kc)", masked=True),
-    K(QK_LALT, "LALT(kc)", "LAlt\n(kc)", masked=True),
-    K(QK_LGUI, "LGUI(kc)", "LGui\n(kc)", masked=True),
-    K(QK_RSFT, "RSFT(kc)", "RSft\n(kc)", masked=True),
-    K(QK_RCTL, "RCTL(kc)", "RCtl\n(kc)", masked=True),
-    K(QK_RALT, "RALT(kc)", "RAlt\n(kc)", masked=True),
-    K(QK_RGUI, "RGUI(kc)", "RGui\n(kc)", masked=True),
-
-
-    K(QK_LCTL|QK_LSFT|QK_LALT|QK_LGUI, "HYPR(kc)", "Hyper\n(kc)", "LCTL + LSFT + LALT + LGUI", masked=True),
-    K(QK_LCTL|QK_LSFT|QK_LALT, "MEH(kc)", "Meh\n(kc)", "LCTL + LSFT + LALT", masked=True),
-    K(QK_LCTL|QK_LALT|QK_LGUI, "LCAG(kc)", "LCAG\n(kc)", "LCTL + LALT + LGUI", masked=True),
-    K(QK_LGUI|QK_LSFT, "SGUI(kc)", "SGUI\n(kc)", "LGUI + LSFT", masked=True),
-    K(QK_LCTL|QK_LALT, "LCA(kc)", "LCA\n(kc)", "LCTL + LALT", masked=True),
-    K(QK_LSFT|QK_LALT, "LSA(kc)", "LSA\n(kc)", "LSFT + LALT", masked=True),
-    K(QK_LCTL|QK_LSFT, "C_S(kc)", "C_S\n(kc)", "LCTL + LSFT", masked=True),
-    K(QK_LCTL|QK_LGUI, "LCG(kc)", "LCG\n(kc)", "LCTL + LGUI", masked=True),
-    K(QK_RCTL|QK_RGUI, "RCG(kc)", "RCG\n(kc)", "RCTL + RGUI", masked=True),
-
-
-
+    K(QK_LSFT, "左SHIFT + 按键同时按下", "Shift\n(左)+", masked=True),
+    K(QK_LCTL, "左CTRL + 按键同时按下", "Ctrl\n(左)+", masked=True),
+    K(QK_LALT, "左ALT + 按键同时按下", "Alt\n(左)+", masked=True),
+    K(QK_LGUI, "左Win/Command + 按键同时按下", "Gui\n(左)+", masked=True),
+    K(QK_RSFT, "右SHIFT + 按键同时按下", "Shift\n(右)+", masked=True),
+    K(QK_RCTL, "右CTRL + 按键同时按下", "Ctrl\n(右)+", masked=True),
+    K(QK_RALT, "RALT(kc)", "Alt\n(右)+", masked=True),
+    K(QK_RGUI, "右Win/Command + 按键同时按下", "Gui\n(右)+", masked=True),
+    K(QK_LCTL | QK_LALT, "LCA(kc)", "CA\n(左)+", "左边Ctrl + Alt + 按键同时按下", masked=True),
+    K(QK_LGUI|QK_LSFT, "SGUI(kc)", "SG\n(左)+", "左边Win/Command + Shift + 按键同时按下", masked=True),
+    K(QK_LSFT|QK_LALT, "LSA(kc)", "SA\n(左)+", "左边Shift+ Alt + 按键同时按下", masked=True),
+    K(QK_LCTL|QK_LSFT, "C_S(kc)", "SC\n(左)+", "左边Shift + Ctrl + 按键同时按下", masked=True),
+    K(QK_LCTL|QK_LGUI, "LCG(kc)", "CG\n(左)+", "左边Ctrl + Win/Command + 按键同时按下", masked=True),
+    K(QK_RCTL|QK_RGUI, "RCG(kc)", "CG\n(右)+", "右边Ctrl + Win/Command + 按键同时按下", masked=True),
+    K(QK_LCTL | QK_LSFT | QK_LALT, "MEH(kc)", "SCA\n(左)+", "左边Shift + Ctrl + Alt + 按键同时按下", masked=True),
+    K(QK_LCTL | QK_LALT | QK_LGUI, "CAG(kc)", "CGA\n(左)+", "左边Ctrl + Win/Command + Alt + 按键同时按下", masked=True),
+    K(QK_LCTL|QK_LSFT|QK_LALT|QK_LGUI, "HYPR(kc)", "SCGA\n(左)+", "左边Shift + Ctrl + Win/Command + Alt + 按键同时按下", masked=True),
 ]
 
 KEYCODES_BACKLIGHT = [
-    K(23746, "RGB_TOG", "RGB\nOn/Off", "Toggle RGB lighting on or off"),
-    K(23747, "RGB_MOD", "RGB\nMode+", "Next RGB mode"),
-    K(23748, "RGB_RMOD", "RGB\nMode-", "Previous RGB mode"),
-    K(23749, "RGB_HUI", "Hue\n+", "Increase hue"),
-    K(23750, "RGB_HUD", "Hue\n-", "Decrease hue"),
-    K(23751, "RGB_SAI", "Sat\n+", "Increase saturation"),
-    K(23752, "RGB_SAD", "Sat\n-", "Decrease saturation"),
-    K(23753, "RGB_VAI", "Bright\n+", "Increase value"),
-    K(23754, "RGB_VAD", "Bright\n-", "Decrease value"),
-    K(23755, "RGB_SPI", "Effect\n+", "Increase RGB effect speed"),
-    K(23756, "RGB_SPD", "Effect\n-", "Decrease RGB effect speed"),
+    K(23746, "RGB_TOG", "灯光\n开关", ),
+    K(23747, "RGB_MOD", "灯效+", ),
+    K(23748, "RGB_RMOD", "灯效-",),
+    K(23749, "RGB_HUI", "色相+", ),
+    K(23750, "RGB_HUD", "色相-", ),
+    K(23751, "RGB_SAI", "饱和\n度+", ),
+    K(23752, "RGB_SAD", "饱和\n度-", "需要白色将饱和度降到最低就好"),
+    K(23753, "RGB_VAI", "亮度+", ),
+    K(23754, "RGB_VAD", "亮度-", "当降到最低就没啦，得把亮度加上去"),
+    K(23755, "RGB_SPI", "灯效\n速率+", "别太快，太快了晃眼睛"),
+    K(23756, "RGB_SPD", "灯效\n速率-", ),
+]
+
+KEYCODES_ShortcutK = [
+    K(QK_LCTL | 0x04, "复制", "全选", ),
+    K(QK_LCTL | 0x06, "复制", "复制", ),
+    K(QK_LCTL | 0x1B, "复制", "剪切", ),
+    K(QK_LCTL | 0x19, "复制", "粘贴", ),
+    K(QK_LCTL | 0x1D, "复制", "撤销", ),
+    K(QK_LCTL | 0x1C, "复制", "还原", ),
+    K(QK_LCTL | 0x16, "复制", "保存", ),
+    K(QK_LGUI | 0x07, "复制", "返回\n桌面", ),
+    K(QK_LGUI | 0x0F, "复制", "锁定\n电脑", ),
+]
+
+KEYCODES_ShortcutM = [
+    K(QK_LGUI | 0x04, "复制", "全选", ),
+    K(QK_LGUI | 0x06, "复制", "复制", ),
+    K(QK_LGUI | 0x1B, "复制", "剪切", ),
+    K(QK_LGUI | 0x19, "复制", "粘贴", ),
+    K(QK_LGUI | 0x1D, "复制", "撤销", ),
+    K(QK_LGUI | QK_LSFT | 0x1C, "复制", "还原", ),
+    K(QK_LGUI | 0x16, "复制", "保存", ),
+    K(QK_LGUI | 0x0B, "复制", "隐藏", ),
+    K(QK_LGUI | QK_LSFT | 0x21, "复制", "截图", ),
+    K(QK_LALT | QK_LGUI | 0x1A, "复制", "关闭\n所有", ),
+    K(QK_LALT | QK_LGUI | 0x29, "复制", "强制\n关闭", ),
 ]
 
 KEYCODES_Mouse = [
-    K(240, "KC_MS_U", "Mouse\nUp", "Mouse Cursor Up", alias=["KC_MS_UP"]),
-    K(241, "KC_MS_D", "Mouse\nDown", "Mouse Cursor Down", alias=["KC_MS_DOWN"]),
-    K(242, "KC_MS_L", "Mouse\nLeft", "Mouse Cursor Left", alias=["KC_MS_LEFT"]),
-    K(243, "KC_MS_R", "Mouse\nRight", "Mouse Cursor Right", alias=["KC_MS_RIGHT"]),
-    K(244, "KC_BTN1", "Mouse\n1", "Mouse Button 1", alias=["KC_MS_BTN1"]),
-    K(245, "KC_BTN2", "Mouse\n2", "Mouse Button 2", alias=["KC_MS_BTN2"]),
-    K(246, "KC_BTN3", "Mouse\n3", "Mouse Button 3", alias=["KC_MS_BTN3"]),
-    K(247, "KC_BTN4", "Mouse\n4", "Mouse Button 4", alias=["KC_MS_BTN4"]),
-    K(248, "KC_BTN5", "Mouse\n5", "Mouse Button 5", alias=["KC_MS_BTN5"]),
-    K(249, "KC_WH_U", "Mouse\nWheel\nUp", alias=["KC_MS_WH_UP"]),
-    K(250, "KC_WH_D", "Mouse\nWheel\nDown", alias=["KC_MS_WH_DOWN"]),
-    K(251, "KC_WH_L", "Mouse\nWheel\nLeft", alias=["KC_MS_WH_LEFT"]),
-    K(252, "KC_WH_R", "Mouse\nWheel\nRight", alias=["KC_MS_WH_RIGHT"]),
-    K(253, "KC_ACL0", "Mouse\nAccel\n0", "Set mouse acceleration to 0", alias=["KC_MS_ACCEL0"]),
-    K(254, "KC_ACL1", "Mouse\nAccel\n1", "Set mouse acceleration to 1", alias=["KC_MS_ACCEL1"]),
-    K(255, "KC_ACL2", "Mouse\nAccel\n2", "Set mouse acceleration to 2", alias=["KC_MS_ACCEL2"]),
+    K(240, "KC_MS_U", "鼠标\n↑", alias=["KC_MS_UP"]),
+    K(241, "KC_MS_D", "鼠标\n↓", "Mouse Cursor Down", alias=["KC_MS_DOWN"]),
+    K(242, "KC_MS_L", "鼠标\n←", "Mouse Cursor Left", alias=["KC_MS_LEFT"]),
+    K(243, "KC_MS_R", "鼠标\n→", "Mouse Cursor Right", alias=["KC_MS_RIGHT"]),
+    K(244, "KC_BTN1", "鼠标\n左键", "Mouse Button 1", alias=["KC_MS_BTN1"]),
+    K(245, "KC_BTN2", "鼠标\n右键", "Mouse Button 2", alias=["KC_MS_BTN2"]),
+    K(246, "KC_BTN3", "鼠标\n中键", "Mouse Button 3", alias=["KC_MS_BTN3"]),
+    K(247, "KC_BTN4", "鼠标\n4键", "Mouse Button 4", alias=["KC_MS_BTN4"]),
+    K(248, "KC_BTN5", "鼠标\n5键", "Mouse Button 5", alias=["KC_MS_BTN5"]),
+    K(249, "KC_WH_U", "滚轮\n↑", alias=["KC_MS_WH_UP"]),
+    K(250, "KC_WH_D", "滚轮\n↓", alias=["KC_MS_WH_DOWN"]),
+    K(251, "KC_WH_L", "滚轮\n←", alias=["KC_MS_WH_LEFT"]),
+    K(252, "KC_WH_R", "滚轮\n→", alias=["KC_MS_WH_RIGHT"]),
+    #K(253, "KC_ACL0", "鼠标\nAccel\n0", "Set mouse acceleration to 0", alias=["KC_MS_ACCEL0"]),
+    #K(254, "KC_ACL1", "鼠标\nAccel\n1", "Set mouse acceleration to 1", alias=["KC_MS_ACCEL1"]),
+    #K(255, "KC_ACL2", "鼠标\nAccel\n2", "Set mouse acceleration to 2", alias=["KC_MS_ACCEL2"]),
 ]
 
 KEYCODES_APP = [
-    K(165, "KC_PWR", "Power", "System Power Down", alias=["KC_SYSTEM_POWER"]),
-    K(166, "KC_SLEP", "Sleep", "System Sleep", alias=["KC_SYSTEM_SLEEP"]),
-    K(167, "KC_WAKE", "Wake", "System Wake", alias=["KC_SYSTEM_WAKE"]),
-    K(116, "KC_EXEC", "Exec", "Execute", alias=["KC_EXECUTE"]),
-    K(117, "KC_HELP", "Help"),
-    K(119, "KC_SLCT", "Select", alias=["KC_SELECT"]),
-    K(120, "KC_STOP", "Stop"),
-    K(121, "KC_AGIN", "Again", alias=["KC_AGAIN"]),
-    K(122, "KC_UNDO", "Undo"),
-    K(123, "KC_CUT", "Cut"),
-    K(124, "KC_COPY", "Copy"),
-    K(125, "KC_PSTE", "Paste", alias=["KC_PASTE"]),
-    K(126, "KC_FIND", "Find"),
+    #K(124, "KC_COPY", "复制"),
+    #K(125, "KC_PSTE", "粘贴", alias=["KC_PASTE"]),
+    #K(123, "KC_CUT", "剪切"),
+    #K(121, "KC_AGIN", "还原", alias=["KC_AGAIN"]),
+    #K(122, "KC_UNDO", "撤销"),
+    #K(116, "KC_EXEC", "Exec", "Execute", alias=["KC_EXECUTE"]),
+    #K(117, "KC_HELP", "帮助"),
+    #K(119, "KC_SLCT", "Select", alias=["KC_SELECT"]),
+    #K(120, "KC_STOP", "Stop"),
+    #K(126, "KC_FIND", "查找"),
+    K(165, "KC_PWR", "电源", "System Power Down", alias=["KC_SYSTEM_POWER"]),
+    K(166, "KC_SLEP", "休眠", "System Sleep", alias=["KC_SYSTEM_SLEEP"]),
+    K(167, "KC_WAKE", "唤醒", "System Wake", alias=["KC_SYSTEM_WAKE"]),
 
-    K(178, "KC_CALC", "Calc", "Launch Calculator (Windows)", alias=["KC_CALCULATOR"]),
-    K(177, "KC_MAIL", "Mail", "Launch Mail (Windows)"),
-    K(175, "KC_MSEL", "Media\nPlayer", "Launch Media Player (Windows)", alias=["KC_MEDIA_SELECT"]),
-    K(179, "KC_MYCM", "My\nPC", "Launch My Computer (Windows)", alias=["KC_MY_COMPUTER"]),
+    K(178, "KC_CALC", "计算器", "Launch Calculator (Windows)", alias=["KC_CALCULATOR"]),
+    K(177, "KC_MAIL", "邮件", "Launch Mail (Windows)"),
+    K(175, "KC_MSEL", "默认\n播放器", "Launch Media Player (Windows)", alias=["KC_MEDIA_SELECT"]),
+    K(179, "KC_MYCM", "我的\n电脑", "Launch My Computer (Windows)", alias=["KC_MY_COMPUTER"]),
 
-    K(180, "KC_WSCH", "Browser\nSearch", "Browser Search (Windows)", alias=["KC_WWW_SEARCH"]),
-    K(181, "KC_WHOM", "Browser\nHome", "Browser Home (Windows)", alias=["KC_WWW_HOME"]),
-    K(182, "KC_WBAK", "Browser\nBack", "Browser Back (Windows)", alias=["KC_WWW_BACK"]),
-    K(183, "KC_WFWD", "Browser\nForward", "Browser Forward (Windows)", alias=["KC_WWW_FORWARD"]),
-    K(184, "KC_WSTP", "Browser\nStop", "Browser Stop (Windows)", alias=["KC_WWW_STOP"]),
-    K(185, "KC_WREF", "Browser\nRefresh", "Browser Refresh (Windows)", alias=["KC_WWW_REFRESH"]),
-    K(186, "KC_WFAV", "Browser\nFav.", "Browser Favorites (Windows)", alias=["KC_WWW_FAVORITES"]),
+    K(180, "KC_WSCH", "浏览器\n搜索", "Browser Search (Windows)", alias=["KC_WWW_SEARCH"]),
+    K(181, "KC_WHOM", "浏览器\n主页", "Browser Home (Windows)", alias=["KC_WWW_HOME"]),
+    K(182, "KC_WBAK", "浏览器\n后退", "Browser Back (Windows)", alias=["KC_WWW_BACK"]),
+    K(183, "KC_WFWD", "浏览器\n前进", "Browser Forward (Windows)", alias=["KC_WWW_FORWARD"]),
+    K(184, "KC_WSTP", "浏览器\n停止", "Browser Stop (Windows)", alias=["KC_WWW_STOP"]),
+    K(185, "KC_WREF", "浏览器\n刷新", "Browser Refresh (Windows)", alias=["KC_WWW_REFRESH"]),
+    #K(186, "KC_WFAV", "浏览器\n收藏夹", "Browser Favorites (Windows)", alias=["KC_WWW_FAVORITES"]),
 ]
 
 KEYCODES_DIAL1 = [
-    K(0x00DD, "KC_DIAL_BT", "DIAL\nBTN", "DIAL_BTN", alias=["xxxxxx"]),
-    K(0x00DE, "KC_DIAL_CW", "DIAL\nCW", "DIAL_CW", alias=["xxxxxx"]),
-    K(0x00DF, "KC_DIAL_CCW", "DIAL\nCCW", "DIAL_CCW", alias=["xxxxxx"]),
-    K(172, "KC_MPRV", "Media\nPrev", "Previous Track", alias=["KC_MEDIA_PREV_TRACK"]),
-    K(171, "KC_MNXT", "Media\nNext", "Next Track", alias=["KC_MEDIA_NEXT_TRACK"]),
-    K(170, "KC_VOLD", "Vol -", "Volume Down", alias=["KC_AUDIO_VOL_DOWN"]),
-    K(169, "KC_VOLU", "Vol +", "Volume Up", alias=["KC_AUDIO_VOL_UP"]),
-
+    K(0x00DD, "KC_DIAL_BT", "DIAL\n按下", "模拟Surface DIAL，这里等同与Surface DIAL的按下功能。\n注意：一定要有这个按下，才能完美唤醒Surface Dial功能。", alias=["xxxxxx"]),
+    K(0x00DE, "KC_DIAL_CW", "DIAL\n顺时针", "模拟Surface DIAL，这里等同与Surface DIAL的顺时针旋转功能。\n注意：一定要有按下，才能完美唤醒Surface Dial功能。", alias=["xxxxxx"]),
+    K(0x00DF, "KC_DIAL_CCW", "DIAL\n逆时针", "模拟Surface DIAL，这里等同与Surface DIAL的逆时针旋转功能。\n注意：一定要有按下，才能完美唤醒Surface Dial功能。", alias=["xxxxxx"]),
+    K(172, "KC_MPRV", "上一曲", "Previous Track", alias=["KC_MEDIA_PREV_TRACK"]),
+    K(171, "KC_MNXT", "下一曲", "Next Track", alias=["KC_MEDIA_NEXT_TRACK"]),
+    K(170, "KC_VOLD", "音量-", "Volume Down", alias=["KC_AUDIO_VOL_DOWN"]),
+    K(169, "KC_VOLU", "音量+", "Volume Up", alias=["KC_AUDIO_VOL_UP"]),
 ]
 
 KEYCODES_MEDIA = [
-    K(189, "KC_BRIU", "Bright.\nUp", "Increase the brightness of screen (Laptop)", alias=["KC_BRIGHTNESS_UP"]),
-    K(190, "KC_BRID", "Bright.\nDown", "Decrease the brightness of screen (Laptop)", alias=["KC_BRIGHTNESS_DOWN"]),
+    K(189, "KC_BRIU", "屏幕\n亮度+", "Increase the brightness of screen (Laptop)", alias=["KC_BRIGHTNESS_UP"]),
+    K(190, "KC_BRID", "屏幕\n亮度-", "Decrease the brightness of screen (Laptop)", alias=["KC_BRIGHTNESS_DOWN"]),
+    K(172, "KC_MPRV", "上一曲", "Previous Track", alias=["KC_MEDIA_PREV_TRACK"]),
+    K(171, "KC_MNXT", "下一曲", "Next Track", alias=["KC_MEDIA_NEXT_TRACK"]),
+    K(168, "KC_MUTE", "静音", "Mute Audio", alias=["KC_AUDIO_MUTE"]),
+    K(170, "KC_VOLD", "音量-", "Volume Down", alias=["KC_AUDIO_VOL_DOWN"]),
+    K(169, "KC_VOLU", "音量+", "Volume Up", alias=["KC_AUDIO_VOL_UP"]),
+    #K(129, "KC__VOLDOWN", "Vol -\nAlt", "Volume Down Alternate"),
+    #K(128, "KC__VOLUP", "Vol +\nAlt", "Volume Up Alternate"),
+    K(173, "KC_MSTP", "多媒体\n暂停", alias=["KC_MEDIA_STOP"]),
+    K(174, "KC_MPLY", "多媒体\n播放", "Play/Pause", alias=["KC_MEDIA_PLAY_PAUSE"]),
+    #K(188, "KC_MRWD", "Prev\nTrack\n(macOS)", "Previous Track / Rewind (macOS)", alias=["KC_MEDIA_REWIND"]),
+    #K(187, "KC_MFFD", "Next\nTrack\n(macOS)", "Next Track / Fast Forward (macOS)", alias=["KC_MEDIA_FAST_FORWARD"]),
+    K(176, "KC_EJCT", "弹出", "Eject (macOS)", alias=["KC_MEDIA_EJECT"]),
 
-    K(172, "KC_MPRV", "Media\nPrev", "Previous Track", alias=["KC_MEDIA_PREV_TRACK"]),
-    K(171, "KC_MNXT", "Media\nNext", "Next Track", alias=["KC_MEDIA_NEXT_TRACK"]),
-    K(168, "KC_MUTE", "Mute", "Mute Audio", alias=["KC_AUDIO_MUTE"]),
-    K(170, "KC_VOLD", "Vol -", "Volume Down", alias=["KC_AUDIO_VOL_DOWN"]),
-    K(169, "KC_VOLU", "Vol +", "Volume Up", alias=["KC_AUDIO_VOL_UP"]),
-    K(129, "KC__VOLDOWN", "Vol -\nAlt", "Volume Down Alternate"),
-    K(128, "KC__VOLUP", "Vol +\nAlt", "Volume Up Alternate"),
-    K(173, "KC_MSTP", "Media\nStop", alias=["KC_MEDIA_STOP"]),
-    K(174, "KC_MPLY", "Media\nPlay", "Play/Pause", alias=["KC_MEDIA_PLAY_PAUSE"]),
-    K(188, "KC_MRWD", "Prev\nTrack\n(macOS)", "Previous Track / Rewind (macOS)", alias=["KC_MEDIA_REWIND"]),
-    K(187, "KC_MFFD", "Next\nTrack\n(macOS)", "Next Track / Fast Forward (macOS)", alias=["KC_MEDIA_FAST_FORWARD"]),
-    K(176, "KC_EJCT", "Eject", "Eject (macOS)", alias=["KC_MEDIA_EJECT"]),
-
-    K(130, "KC_LCAP", "Locking\nCaps", "Locking Caps Lock", alias=["KC_LOCKING_CAPS"]),
-    K(131, "KC_LNUM", "Locking\nNum", "Locking Num Lock", alias=["KC_LOCKING_NUM"]),
-    K(132, "KC_LSCR", "Locking\nScroll", "Locking Scroll Lock", alias=["KC_LOCKING_SCROLL"]),
+    K(130, "KC_LCAP", "锁\nCaps", "Locking Caps Lock", alias=["KC_LOCKING_CAPS"]),
+    K(131, "KC_LNUM", "锁\nNum", "Locking Num Lock", alias=["KC_LOCKING_NUM"]),
+    K(132, "KC_LSCR", "锁\nScroll", "Locking Scroll Lock", alias=["KC_LOCKING_SCROLL"]),
 ]
 
 KEYCODES_22 = [
-    K(MT(MOD_LSFT), "LSFT_T(kc)", "LSft_T\n(kc)", "Left Shift when held, kc when tapped", masked=True),
-    K(MT(MOD_LCTL), "LCTL_T(kc)", "LCtl_T\n(kc)", "Left Control when held, kc when tapped", masked=True),
-    K(MT(MOD_LALT), "LALT_T(kc)", "LAlt_T\n(kc)", "Left Alt when held, kc when tapped", masked=True),
-    K(MT(MOD_LGUI), "LGUI_T(kc)", "LGui_T\n(kc)", "Left GUI when held, kc when tapped", masked=True),
-    K(MT(MOD_RSFT), "RSFT_T(kc)", "RSft_T\n(kc)", "Right Shift when held, kc when tapped", masked=True),
-    K(MT(MOD_RCTL), "RCTL_T(kc)", "RCtl_T\n(kc)", "Right Control when held, kc when tapped", masked=True),
-    K(MT(MOD_RALT), "RALT_T(kc)", "RAlt_T\n(kc)", "Right Alt when held, kc when tapped", masked=True),
-    K(MT(MOD_RGUI), "RGUI_T(kc)", "RGui_T\n(kc)", "Right GUI when held, kc when tapped", masked=True),
-    K(MT(MOD_LCTL | MOD_LSFT), "C_S_T(kc)", "C_S_T\n(kc)", "Left Control + Left Shift when held, kc when tapped",
+    K(MT(MOD_LSFT), "LSFT_T(kc)", "左Shift\n|按键", "长按为左Shift（按下后和其他按键组合按也生效），短按为设定的按键", masked=True),
+    K(MT(MOD_LCTL), "LCTL_T(kc)", "左Ctrl\n|按键", "长按为左Control，短按为设定的按键", masked=True),
+    K(MT(MOD_LALT), "LALT_T(kc)", "左Alt\n|按键", "长按为左Alt，短按为设定的按键", masked=True),
+    K(MT(MOD_LGUI), "LGUI_T(kc)", "左Gui\n|按键", "长按为左GUI，短按为设定的按键", masked=True),
+    K(MT(MOD_RSFT), "RSFT_T(kc)", "右Shift\n|按键", "长按为右Shift，短按为设定的按键", masked=True),
+    K(MT(MOD_RCTL), "RCTL_T(kc)", "右Ctrl\n|按键", "长按为右Control，短按为设定的按键", masked=True),
+    K(MT(MOD_RALT), "RALT_T(kc)", "右Alt\n|按键", "长按为右Alt，短按为设定的按键", masked=True),
+    K(MT(MOD_RGUI), "RGUI_T(kc)", "右Gui\n|按键", "长按为右GUI，短按为设定的按键", masked=True),
+    K(MT(MOD_LCTL | MOD_LSFT), "C_S_T(kc)", "左SC\n|按键", "长按为左Control + Left Shift，短按为设定的按键",
       masked=True),
     K(MT(MOD_LCTL | MOD_LSFT | MOD_LALT | MOD_LGUI), "ALL_T(kc)",
-      "ALL_T\n(kc)", "LCTL + LSFT + LALT + LGUI when held, kc when tapped", masked=True),
-    K(MT(MOD_LCTL | MOD_LSFT | MOD_LALT), "MEH_T(kc)", "Meh_T\n(kc)", "LCTL + LSFT + LALT when held, kc when tapped",
+      "左SCGA\n|按键", "长按为左CTL + SFT + ALT + GUI，短按为设定的按键", masked=True),
+    K(MT(MOD_LCTL | MOD_LSFT | MOD_LALT), "MEH_T(kc)", "左SCA\n|按键", "长按为左CTL + LSFT + LALT，短按为设定的按键",
       masked=True),
-    K(MT(MOD_LCTL | MOD_LALT | MOD_LGUI), "LCAG_T(kc)", "LCAG_T\n(kc)", "LCTL + LALT + LGUI when held, kc when tapped",
+    K(MT(MOD_LCTL | MOD_LALT | MOD_LGUI), "LCAG_T(kc)", "左CGA\n|按键", "长按为左CTL + LALT + LGUI，短按为设定的按键",
       masked=True),
-    K(MT(MOD_RCTL | MOD_RALT | MOD_RGUI), "RCAG_T(kc)", "RCAG_T\n(kc)", "RCTL + RALT + RGUI when held, kc when tapped",
+    K(MT(MOD_RCTL | MOD_RALT | MOD_RGUI), "RCAG_T(kc)", "右CGA\n|按键", "长按为右CTL + RALT + RGUI，短按为设定的按键",
       masked=True),
-    K(MT(MOD_LGUI | MOD_LSFT), "SGUI_T(kc)", "SGUI_T\n(kc)", "LGUI + LSFT when held, kc when tapped", masked=True),
-    K(MT(MOD_LCTL | MOD_LALT), "LCA_T(kc)", "LCA_T\n(kc)", "LCTL + LALT when held, kc when tapped", masked=True),
-    K(MT(MOD_LSFT | MOD_LALT), "LSA_T(kc)", "LSA_T\n(kc)", "LSFT + LALT when held, kc when tapped", masked=True),
-    K(MT(MOD_LCTL | MOD_LGUI), "LCG_T(kc)", "LCG_T\n(kc)", "LCTL + LGUI when held, kc when tapped", masked=True),
-    K(MT(MOD_RCTL | MOD_RGUI), "RCG_T(kc)", "RCG_T\n(kc)", "RCTL + RGUI when held, kc when tapped", masked=True),
+    K(MT(MOD_LGUI | MOD_LSFT), "SGUI_T(kc)", "左SG\n|按键", "长按为左GUI + LSFT，短按为设定的按键", masked=True),
+    K(MT(MOD_LCTL | MOD_LALT), "LCA_T(kc)", "左CA\n|按键", "长按为左CTL + LALT，短按为设定的按键", masked=True),
+    K(MT(MOD_LSFT | MOD_LALT), "LSA_T(kc)", "左SA\n|按键", "长按为左SFT + LALT，短按为设定的按键", masked=True),
+    K(MT(MOD_LCTL | MOD_LGUI), "LCG_T(kc)", "左CG\n|按键", "长按为左CTL + LGUI，短按为设定的按键", masked=True),
+    K(MT(MOD_RCTL | MOD_RGUI), "RCG_T(kc)", "右CG\n|按键", "长按为右CTL + RGUI，短按为设定的按键", masked=True),
 ]
 
 
@@ -719,14 +738,14 @@ def recreate_keyboard_keycodes(keyboard):
     #    KEYCODES_LAYERS.append(Keycode(0x5F11, "FN_MO23", "Fn2\n(Fn3)"))
 
     KEYCODES_LAYERS.extend(
-        generate_keycodes_for_mask("MO", 0x5100,
-                                   "Momentarily turn on layer when pressed (requires KC_TRNS on destination layer)"))
+        generate_keycodes_for_mask("瞬时\n层", 0x5100,
+                                   "瞬时开启层（按下时开启，松开时关闭）用现在量产的说法 MO为 Fn。按住该 FN 时打开层，松开时关闭层。"))
     #KEYCODES_LAYERS.extend(
     #    generate_keycodes_for_mask("DF", 0x5200,
     #                               "Set the base (default) layer"))
     KEYCODES_LAYERS.extend(
-        generate_keycodes_for_mask("TG", 0x5300,
-                                   "Toggle layer on or off"))
+        generate_keycodes_for_mask("开关\n层", 0x5300,
+                                   "层开关（切换层开启或关闭）但是只能在某两层中来回切换。例如若在层 0 中 ESC 的位置设置了 TG(5)，\n下后会立即跳转到层 5 中，在层 5 中 ESC 的位置只能设置为 KC_TRNS。\n你只能把 TG(layer) 这个键设置到layer 上面的层，比如你可以在第 0 层设置 TG(5) ，但是你不能在第 5 层设置 TG(0) "))
     #KEYCODES_LAYERS.extend(
     #    generate_keycodes_for_mask("TT", 0x5800,
     #                               "Normally acts like MO unless it's tapped multiple times, which toggles layer on"))
@@ -734,12 +753,12 @@ def recreate_keyboard_keycodes(keyboard):
     #    generate_keycodes_for_mask("OSL", 0x5400,
     #                               "Momentarily activates layer until a key is pressed"))
     KEYCODES_LAYERS.extend(
-        generate_keycodes_for_mask("TO", 0x5000 | (1 << 4),
-                                   "Turns on layer and turns off all other layers, except the default layer"))
+        generate_keycodes_for_mask("跳转\n层", 0x5000 | (1 << 4),
+                                   "跳转到层（按下时直接跳转到某层）\n是个松开不会恢复的MO，不建议新手最开始随意使用，容易回不来。"))
 
     for x in range(layers):
-        KEYCODES_22.append(Keycode(LT(x), "LT({}, kc)".format(x), "LT {}\n(kc)".format(x),
-                                       "kc on tap, switch to layer {} while held".format(x), masked=True))
+        KEYCODES_22.append(Keycode(LT(x), "层({}, |按键)".format(x), "层 {}\n|按键".format(x),
+                                       "瞬时开启层 + 键值二合一".format(x), masked=True))
 
     KEYCODES_MACRO.clear()
     for x in range(keyboard.macro_count):
